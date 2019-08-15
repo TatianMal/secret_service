@@ -6,18 +6,19 @@
 @endsection
 
 @section('content')
-    <form action="" method="POST">
+    <form action="{{ route('get_data', [$data]) }}" method="POST">
         @csrf
         <label for="password">Введите пароль для доступа к данным</label>
-        <input name="password" id="password" type="password">
-        <span class="help-text error">Неверный пароль, попробуйте еще раз</span>
+        <input name="password" id="password" type="password" required value="{{ old('password') }}">
+        @foreach ($errors->get('password') as $error)
+            <span class="help-text error">{{ $error }}</span>
+        @endforeach
         <input class="btn" id="access-data" type="submit" value="Получить доступ">
     </form>
+    
     <div class="flex-container">
         <span>Ваши данные</span>
-        <span class="data">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid blanditiis,
-            deserunt earum eum facilis in iste laudantium maxime nam necessitatibus, nemo nesciunt placeat,
-            porro quasi rem sapiente sed veritatis?</span>
+        <span class="data">{{ $data->content }}</span>
         <div class="btn-wrapper">
             <button class="btn delete" onclick="">Удалить</button>
             <button class="btn center">На главную</button>

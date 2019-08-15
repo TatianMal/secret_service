@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', 'DataController@index');
+Route::get('/', 'DataController@index')->name('index');
 
-Route::post('/create', 'DataController@create_data');
+Route::post('/create', 'DataController@create_data')->name('create_data');
 
-Route::get('/{id}', 'DataController@show');
+Route::get('/{data}', 'DataController@show')->name('show_data');
 
-Route::post('/{id}', 'DataController@get_data');
+Route::post('/{data}', 'DataController@get_data')->name('get_data');
 
-Route::delete('/{id}', 'DataController@delete');
+Route::delete('/{data}', 'DataController@delete')->name('delete_data');

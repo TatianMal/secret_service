@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Crypt;
 
 class Data extends Model
 {
+    protected $fillable = [
+        'password', 'content'
+    ];
     public $incrementing = false;
     protected $primaryKey = 'url_part';
 
@@ -15,6 +19,12 @@ class Data extends Model
 
         static::creating(function ($post) {
             $post->url_part = Data::create_url();
+            $post->password = password_hash($post->password, PASSWORD_ARGON2I, [
+                'memory_cost' => 2048,
+                'time_cost' => 4,
+                'threads' => 3
+            ]);
+            $post->content = Crypt::encryptString($post->content);
         });
     }
 

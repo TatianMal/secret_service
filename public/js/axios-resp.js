@@ -2058,7 +2058,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
-console.log("hello");
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('create-data').addEventListener("click", function () {
+    var pass = document.getElementById('password').value;
+    var content = document.getElementById('content').value;
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(createUrl, {
+      password: pass,
+      content: content
+    }).then(function (response) {
+      var url = indexUrl + '/' + response.data;
+      var container = document.getElementById('create-container');
+      var result = document.getElementById('saved-data');
+      var link = document.getElementById('link');
+      container.classList.add('hidden');
+      result.classList.remove('hidden');
+      link.setAttribute('href', url);
+      link.innerText = url;
+    })["catch"](function (error) {
+      if (error.response.status === 422) {
+        var errors = error.response.data.errors;
+        var list = document.getElementById('list-errors');
+        list.innerHTML = '';
+        list.classList.add('list-errors');
+
+        for (var field in errors) {
+          var span = document.createElement('span');
+          span.classList.add('help-text', 'error');
+          span.innerText = errors[field][0];
+          list.append(span);
+        }
+      }
+    });
+  });
+});
 
 /***/ }),
 
