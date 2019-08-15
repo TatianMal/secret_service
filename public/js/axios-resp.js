@@ -2077,20 +2077,24 @@ document.addEventListener('DOMContentLoaded', function () {
     })["catch"](function (error) {
       if (error.response.status === 422) {
         var errors = error.response.data.errors;
-        var list = document.getElementById('list-errors');
-        list.innerHTML = '';
-        list.classList.add('list-errors');
-
-        for (var field in errors) {
-          var span = document.createElement('span');
-          span.classList.add('help-text', 'error');
-          span.innerText = errors[field][0];
-          list.append(span);
-        }
+        showErrors(errors);
       }
     });
   });
 });
+
+var showErrors = function showErrors(errors) {
+  var list = document.getElementById('list-errors');
+  list.innerHTML = '';
+  list.classList.add('list-errors');
+
+  for (var field in errors) {
+    var span = document.createElement('span');
+    span.classList.add('help-text', 'error');
+    span.innerText = errors[field][0];
+    list.append(span);
+  }
+};
 
 /***/ }),
 

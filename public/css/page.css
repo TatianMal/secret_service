@@ -1,5 +1,10 @@
-.hidden {
-    /*display: none;*/
+.center-items { align-items: center; }
+
+.data {
+    width: 70%;
+    padding: 10px;
+    font-size: 0.9em;
+    word-wrap: break-word;
 }
 
 .btn-wrapper {
@@ -7,16 +12,12 @@
     justify-content: space-around;
 }
 
-.center { align-self: center; }
-
 .delete {
     align-self: center;
     background-color: darkred;
 }
 
-.delete:hover {
-    background-color: #bf0000;
-}
+.delete:hover { background-color: #bf0000; }
 
 .cancel {
     align-self: center;

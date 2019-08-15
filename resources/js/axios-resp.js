@@ -2,7 +2,6 @@ import axios from 'axios'
 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('create-data').addEventListener("click", function() {
-
         let pass = document.getElementById('password').value;
         let content = document.getElementById('content').value;
 
@@ -23,20 +22,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }).catch(function (error) {
             if (error.response.status === 422) {
                 let errors = error.response.data.errors;
-                let list = document.getElementById('list-errors');
-                list.innerHTML = '';
-                list.classList.add('list-errors');
-
-                for (let field in errors) {
-                    let span = document.createElement('span');
-                    span.classList.add('help-text', 'error');
-                    span.innerText = errors[field][0];
-                    list.append(span);
-                }
+                showErrors(errors);
             }
-
         });
     });
 });
 
+const showErrors = function (errors) {
+    let list = document.getElementById('list-errors');
+    list.innerHTML = '';
+    list.classList.add('list-errors');
+
+    for (let field in errors) {
+        let span = document.createElement('span');
+        span.classList.add('help-text', 'error');
+        span.innerText = errors[field][0];
+        list.append(span);
+    }
+};
 

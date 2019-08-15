@@ -19,11 +19,7 @@ class Data extends Model
 
         static::creating(function ($post) {
             $post->url_part = Data::create_url();
-            $post->password = password_hash($post->password, PASSWORD_ARGON2I, [
-                'memory_cost' => 2048,
-                'time_cost' => 4,
-                'threads' => 3
-            ]);
+            $post->password = password_hash($post->password, PASSWORD_ARGON2I, \config('hash_settings'));
             $post->content = Crypt::encryptString($post->content);
         });
     }

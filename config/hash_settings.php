@@ -1,0 +1,6 @@
+<?php
+return [
+    'memory_cost' => env('ARGON_MEMORY_COST', PASSWORD_ARGON2_DEFAULT_MEMORY_COST),
+    'time_cost' => env('ARGON_TIME_COST', PASSWORD_ARGON2_DEFAULT_TIME_COST),
+    'threads' => env('ARGON_THREADS', PASSWORD_ARGON2_DEFAULT_THREADS)
+];

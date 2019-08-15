@@ -15,23 +15,17 @@
             <input name="password" id="password" type="password" required value="{{ old('password') }}">
             <span class="help-text">Длина пароля: от 8 символов,
                 рекомендуемый пароль состоит из цифр, букв в разных регистрах и спецсимволов</span>
-            {{--@foreach ($errors->get('password') as $error)--}}
-                {{--<span class="help-text error">{{ $error }}</span>--}}
-            {{--@endforeach--}}
 
             <label for="content">Введите данные *</label>
             <textarea name="content" id="content" cols="30" rows="10" required>{{ old('content') }}</textarea>
-            {{--@foreach ($errors->get('content') as $error)--}}
-                {{--<span class="help-text error">{{ $error }}</span>--}}
-            {{--@endforeach--}}
-            <div id="list-errors">
-            </div>
-            <input class="btn non-flex" id="create-data" type="button" value="Отправить">
+
+            <div id="list-errors"></div>
+            <input class="btn center" id="create-data" type="button" value="Отправить">
         </form>
     </div>
     <div class="saved-data hidden" id="saved-data">
         <p class="description">Ваши данные сохранены и доступны по ссылке:</p>
-        <a class="non-flex" href="#" id="link">http://secret.arealidea.ru/fgh8b5</a>
+        <a class="center" href="#" id="link"></a>
     </div>
     <script>
         let indexUrl = @json(route('index'));

@@ -10,6 +10,17 @@ use Illuminate\Support\Facades\Crypt;
 
 class DataController extends Controller
 {
+    protected $messages = [
+        'password.required' => 'Необходимо заполнить поле пароля',
+        'content.required' => 'Необходимо добавить данные',
+        'password.min' => 'Длина пароля не меньше :min символов!',
+    ];
+
+    protected $rules = [
+        'password' => ['required', 'min:8'],
+        'content' => ['required'],
+    ];
+
     public function index()
     {
         return view('index');
@@ -17,22 +28,7 @@ class DataController extends Controller
 
     public function create_data()
     {
-        $messages = [
-            'password.required' => 'Необходимо заполнить поле пароля',
-            'content.required' => 'Необходимо добавить данные',
-            'password.min' => 'Длина пароля не меньше :min символов!',
-        ];
-
-        $rules = [
-            'password' => ['required', 'min:8'],
-            'content' => ['required'],
-        ];
-
-        $validator = Validator::make(request(['password', 'content']), $rules, $messages)->validate();
-
-//        if ($validator->fails()) {
-//            return response()->json($validator->messages(), 422);
-//        }
+        $validator = Validator::make(request(['password', 'content']), $this->rules, $this->messages)->validate();
 
         $data = Data::create($validator);
         return $data->url_part;
@@ -45,32 +41,18 @@ class DataController extends Controller
 
     public function get_data(Data $data)
     {
-        $messages = [
-            'password.required' => 'Необходимо заполнить поле пароля',
-            'password.min' => 'Длина пароля не меньше :min символов!',
-        ];
-
-        $rules = [
-            'password' => ['required', 'min:8'],
-        ];
-
-        $validator = Validator::make(request(['password', 'content']), $rules, $messages);
+        $pass_rules['password'] = $this->rules['password'];
+        $validator = Validator::make(request(['password']), $pass_rules, $this->messages);
         if ($validator->fails()) {
             return back()->withErrors($validator);
         }
-
-        $new_hash = password_hash(request('password'), PASSWORD_ARGON2I, [
-            'memory_cost' => 2048,
-            'time_cost' => 4,
-            'threads' => 3
-        ]);
 
         if (!password_verify(request('password'), $data->password)) {
             $validator->errors()->add('password', 'Пароли не совпадают, попробуйте еще раз');
             return back()->withErrors($validator);
         }
         else {
-            dd(Crypt::decryptString($data->content));
+            return view('show')->with('content', Crypt::decryptString($data->content))->with('data', $data);
         }
     }
 

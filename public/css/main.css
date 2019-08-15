@@ -51,11 +51,10 @@ form,
 .saved-data {
     display: flex;
     flex-direction: column;
-
     margin-bottom: 15px;
 }
 
-.non-flex { align-self: center; }
+.center { align-self: center; }
 
 label { margin-top: 5px; }
 
@@ -96,7 +95,5 @@ textarea {
     color: darkred;
 }
 
-.hidden {
-    display: none;
-}
+.hidden { display: none; }
 

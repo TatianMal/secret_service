@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/js/axios-resp.js": "/js/axios-resp.js"
+    "/js/axios-resp.js": "/js/axios-resp.js",
+    "/js/toggles.js": "/js/toggles.js"
 }
