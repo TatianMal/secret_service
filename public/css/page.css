@@ -1,0 +1,36 @@
+.error {
+    font-weight: bold;
+    color: darkred;
+}
+
+.hidden {
+    /*display: none;*/
+}
+
+.btn-wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+.center { align-self: center; }
+
+.delete {
+    align-self: center;
+    background-color: darkred;
+}
+
+.delete:hover {
+    background-color: #bf0000;
+}
+
+.cancel {
+    align-self: center;
+    font-weight: bold;
+    background-color: transparent;
+    color: #343434;
+}
+
+.cancel:hover {
+    color: #ee4003;
+    background-color: transparent;
+}

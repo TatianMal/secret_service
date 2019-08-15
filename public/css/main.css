@@ -1,0 +1,88 @@
+body {
+    display: flex;
+    justify-content: center;
+
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Open Sans', sans-serif;
+    background: url('header-bg.gif') left top repeat;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 70px;
+    padding: 10px 40px 15px;
+    box-sizing: border-box;
+    width: 50%;
+    min-height: 50px;
+
+    color: #282828;
+    background-color: #edf0f6;
+}
+
+a {
+    text-decoration: none;
+    color: #ee4003;
+}
+
+h1 { text-align: center; }
+
+.description {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+form,
+.flex-container {
+    margin-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.saved-data {
+    display: none;
+    margin-bottom: 15px;
+}
+
+.non-flex { align-self: center; }
+
+label { margin-top: 5px; }
+
+input[type="password"],
+textarea {
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.help-text {
+    font-size: 0.8em;
+    color: #4f4f4f;
+}
+
+.btn {
+    display: inline-block;
+
+    padding: 10px;
+    margin: 10px;
+
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: #343434;
+    border-radius: 5px;
+    border: 0;
+    color: white;
+    font-weight: 300;
+}
+
+.btn:hover {
+    transition: all 0.2s linear;
+    background: #4f4f4f;
+}
+
